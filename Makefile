@@ -1,24 +1,18 @@
 # makefile for alarm library for Lua
 
-# change these to reflect your Lua installation
-LUA= /tmp/lhf/lua-5.1.4
-LUAINC= $(LUA)/src
-LUALIB= $(LUA)/src
-LUABIN= $(LUA)/src
-
 # these will probably work if Lua has been installed globally
-#LUA= /usr/local
-#LUAINC= $(LUA)/include
-#LUALIB= $(LUA)/lib
-#LUABIN= $(LUA)/bin
+LUA= /usr
+LUAINC= $(LUA)/include/$(LUAVER)
+LUALIB= $(LUA)/lib
+LUABIN= $(LUA)/bin
+LUAVER= lua5.1
 
 # probably no need to change anything below here
 CC= gcc
-CFLAGS= $(INCS) $(WARN) -O2 $G
+CFLAGS= $(INCS) $(WARN) -O2 $G -fPIC
 WARN= -pedantic -Wall
 INCS= -I$(LUAINC)
 MAKESO= $(CC) -shared
-#MAKESO= env MACOSX_DEPLOYMENT_TARGET=10.3 $(CC) -bundle -undefined dynamic_lookup
 
 MYNAME= alarm
 MYLIB= l$(MYNAME)
